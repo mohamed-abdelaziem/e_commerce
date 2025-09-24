@@ -1,3 +1,4 @@
+import { WishlistService } from './../../../core/services/wishlist.service';
 import { CartService } from './../../../core/services/cart.service';
 import { Component, inject, Input } from '@angular/core';
 import { Product } from '../../../core/interfaces/types.interface';
@@ -19,7 +20,8 @@ export class ProductCardComponent {
 
 
 private cartService = inject(CartService);
-private tostar = inject(ToastrService)
+private tostar = inject(ToastrService);
+private wishlist = inject(WishlistService);
 
 @Input()
 product !: Product;
@@ -44,6 +46,24 @@ this.tostar.error(err);
 }
 })
 }
+
+
+
+
+addProductToWishlist(productId : string){
+console.log("run");
+
+this.wishlist.addToWishlist(productId).subscribe({
+next : (response)=>{
+// console.log(response);
+this.tostar.success(response.message)
+},
+error : (error)=>{
+this.tostar.error("Failed Process");
+}
+})
+}
+
 
 
 }

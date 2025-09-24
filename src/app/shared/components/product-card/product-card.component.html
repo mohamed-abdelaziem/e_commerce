@@ -1,6 +1,9 @@
-<div class="w-full group cursor-pointer active:scale-[0.99] transition-all duration-300">
-<div [routerLink]="['/product-details/' , product._id , product.slug]" >
-<img class="w-full" [src]="product.imageCover" alt="">
+<div class="w-full group cursor-pointer active:scale-[0.99] transition-all duration-300 relative">
+<div  class="flex items-center text-xl justify-center bg-main text-white w-10 h-10 absolute right-0 rounded top-0">
+<i class="fa-regular fa-heart" (click)="addProductToWishlist(product._id)"></i>
+</div>
+<div [routerLink]="['/product-details/' , product._id , product.slug]">
+<img class="w-full" [src]="product.imageCover" alt="" >
 <span class="text-main">{{product.category.name}}</span>
 <h2 class="mb-2 text-xl line-clamp-1">{{product.title}}</h2>
 <div class="flex items-center justify-between">

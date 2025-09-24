@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
     { path: '/categories', title: 'Categories' },
     { path: '/brands', title: 'Brands' },
     { path: '/cart', title: 'Cart' },
+    { path: '/wishlist', title: 'wishist' },
   ];
 
   authPages = [

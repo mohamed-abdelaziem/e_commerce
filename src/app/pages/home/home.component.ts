@@ -19,6 +19,10 @@ isLoading : boolean = false;
 categories !: Category[];
 data !: Product[];
 
+get products(){
+return this.data;
+}
+
 
 searchWord : string = '';
 

@@ -1,0 +1,37 @@
+@if (isLoading) {
+<div class="flex h-screen items-center justify-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}@else {
+<h2 class="text-4xl font-normal my-4">Wishlist : </h2>
+<div class="grid sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 p-4 gap-4">
+@for (item of wishlistProduct ; track $index){
+<div class="rounded cursor-pointer duration-100 active:scale-[.98]">
+<div class="image">
+<img [src]="item?.imageCover" class="w-full" alt="">
+</div>
+<div class="product-details p-2">
+<h2 class="text-2xl text-main font-normal line-clamp-1">{{item?.title}}</h2>
+<p class="line-clamp-2 text-[17px]">{{item?.description}}</p>
+</div>
+<button (click)="removeProductFromWishlist(item._id)" class="bg-red-500 rounded cursor-pointer mt-4 active:scale-[5px] text-white px-4 py-2">Remove</button>
+</div>
+}
+</div>
+}
+
+
+@if (removeLoading) {
+<div class="flex h-screen items-center justify-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}
+
+
+@if (wishlistProduct.length == 0) {
+<p class="text-red-500 text-4xl text-center">Not Found Data</p>
+}
+
+
+
+

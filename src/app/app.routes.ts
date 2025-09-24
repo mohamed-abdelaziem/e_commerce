@@ -64,6 +64,14 @@ loadComponent : ()=> import("./shared/components/product-details/product-details
 title : "Product Details"
 },
 
+
+{
+path : "wishlist",
+canActivate : [authGuard],
+loadComponent : ()=> import("./pages/wishlist/wishlist.component").then(file=>file.WishlistComponent),
+title : "wishList"
+},
+
 {
 path : "resetPassword",
 loadComponent : ()=> import("./pages/reset-password/reset-password.component").then(file=>file.ResetPasswordComponent),
