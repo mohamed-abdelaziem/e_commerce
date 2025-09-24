@@ -1,0 +1,21 @@
+<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+@if (isLoading) {
+@for (item of [0,0,0,0,0,0,0,0,0,0,0,0,0]; track $index) {
+<div>
+<div class="h-60 bg-gray-500 animate-pulse"></div>
+<div class="h-4 w-20 bg-gray-500 animate-pulse my-2"></div>
+<div class="h-4 w-40 bg-gray-500 animate-pulse"></div>
+</div>
+}
+}@else {
+@for (product of data |paginate: { itemsPerPage: limit, currentPage: currentPage ,totalItems : totalItems }; track $index;) {
+<app-product-card [product]="product"></app-product-card>
+}
+}
+</div>
+
+
+               
+<div class="flex justify-center mt-7">
+    <pagination-controls [directionLinks]="false" class="my-pagination" (pageChange)="handlePageChange($event)"></pagination-controls>
+</div>

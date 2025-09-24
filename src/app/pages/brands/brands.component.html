@@ -1,0 +1,16 @@
+@if (loadingBrand) {
+<div class="flex h-screen items-center justify-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}@else {
+<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-4 gap-2">
+@for (item of allBrands; track $index) {
+<div class="bg-gray-100 rounded cursor-pointer hover:-translate-y-1 hover:scale-[0.98] duration-500">
+<img [src]="item?.image" class="w-100" alt="">
+<h2 class="text-center text-main mt-2 font-semibold p-2">{{item?.name}}</h2>
+</div>
+}
+</div>
+
+
+}

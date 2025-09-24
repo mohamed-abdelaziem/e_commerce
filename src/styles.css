@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "../node_modules/flowbite/src/themes/default.css";
+@plugin "../node_modules/flowbite/plugin";
+@source "../node_modules/flowbite";
+
+
+@theme{
+--color-main : rgb(10, 173, 10);
+}

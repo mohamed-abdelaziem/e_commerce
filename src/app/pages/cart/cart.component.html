@@ -1,0 +1,76 @@
+@if (isLoading) {
+<div class="flex h-screen items-center justify-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}@else {
+<div class="my-4 bg-gray-100 p-3">
+  <h2 class="text-4xl font-normal">Shop Cart</h2>
+  <p class="text-main text-2xl my-5">Total Price : {{cartData?.data?.totalCartPrice}} EGP</p>
+  @for (item of cartData?.data?.products; track $index) {
+  <div
+    class="md:flex flex-wrap mb-3 items-center justify-between border-b-2 pb-2 border-gray-200"
+  >
+    <div class="image md:w-[10%] md:h-25 w-full md:mb-0 mb-2">
+      <img
+        [src]="item?.product?.imageCover"
+        class="w-full h-full object-cover"
+        alt=""
+      />
+    </div>
+
+    <div class="md:w-[75%] space-y-[5px] ps-2">
+      <p class="text-3xl">{{item?.product?.title?.split(" ")?.slice(0,4)?.join(" ")}}</p>
+      <p class="text-[20px] text-main font-normal">price : {{item?.price}} EGP</p>
+      <button class="block cursor-pointer">
+        <i class="fa-solid fa-trash text-main"></i>
+        <span (click)="deleteSpecificProduct(item.product._id)">Remove</span>
+      </button>
+    </div>
+
+    <div class="flex items-center justify-end gap-x-2 md:w-[15%]">
+      <button (click)="updateCart(item.count + 1 , item.product.id)"
+        class="rounded border border-main h-10 w-10 flex text-xl items-center justify-center cursor-pointer font-semibold"
+      >
+     
+        +
+     
+      </button>
+      <span>{{item?.count}}</span>
+      <button (click)="updateCart(item.count - 1 ,  item.product.id)"
+        class="border border-main h-10 w-10 flex items-center justify-center rounded cursor-pointer text-xl font-semibold"
+      >
+      -
+      </button>
+    </div>
+  </div>
+  }@empty {
+<p class="text-red-500 text-4xl text-center">Not Found Data</p>
+}
+
+
+@if (cartData?.numOfCartItems !==0) {
+<button
+    (click)="removeAllProduct()"
+    class="bg-red-500 text-white py-2 px-4 cursor-pointer active:scale-[0.98] rounded">
+    Clear Cart
+  </button>
+
+<button [routerLink]="[ `/checkout-session/`, cartData?.cartId]" class="bg-main py-2 px-4 text-white cursor-pointer active:scale-[0.98] rounded ms-2">Checkout Session</button>
+
+}  
+
+</div>
+}
+
+@if (loadingUpdateCart) {
+<div class="flex h-screen items-center justify-center fixed top-0 right-0 left-0">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}
+
+
+@if (loadingRemove) {
+<div class="flex h-screen items-center justify-center fixed top-0 right-0 left-0">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}

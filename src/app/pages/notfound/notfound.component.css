@@ -1,0 +1,8 @@
+div{
+background-image: url("../../../../public/images/error.svg");
+height: 100vh;
+background-position: center;
+background-size: 90% 90%;
+background-attachment: scroll;
+
+}

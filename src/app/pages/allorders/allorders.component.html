@@ -1,0 +1,53 @@
+<h1 class="text-4xl mb-10 font-normal">Order List : </h1>
+@if (isLoading) {
+<div class="flex h-screen justify-center items-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}@else {
+<div>
+@for (item of allOrders | reverse; track $index) {
+
+<div class="orderCart md:grid-cols-4 mb-7 p-3 bg-gray-200 rounded">
+@if ($last) {
+
+}
+<p class="text-3xl">Order {{$index + 1}} </p>
+<h1 class="text-2xl mb-1">Total Price : <span class="text-main">{{item.totalOrderPrice}} EGP</span> </h1>
+<p class="mb-5 font-semibold">Created At : {{item?.createdAt | date : "fullDate"}} </p>
+<div class="cartItemsParent grid sm:grid-cols-3 md:grid-cols-6 gap-x-3 gap-y-4">
+@for (item of allOrders[$index].cartItems; track $index){
+<div class="cartItem bg-gray-300 rounded active:scale-[.98] cursor-pointer" [routerLink]="[`/product-details/` , item?.product?.id , item?.product?.title]">
+<div class="image">
+<img [src]="item.product.imageCover" class="w-full object-cover" alt="">
+</div>
+<div class="cartItemContent p-2">
+<h2 class="text-2xl line-clamp-1">{{item?.product?.title}}</h2>
+<div class="flex justify-between">
+<p class="text-main font-semibold">{{item.price}} EGP</p>
+<p class="flex items-center">{{item?.product?.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></p>
+</div>
+<p>Count : {{item?.count}}</p>
+</div>
+</div>
+}
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+}
+</div>
+}
+
+

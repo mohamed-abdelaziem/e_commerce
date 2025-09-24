@@ -1,0 +1,43 @@
+@if(isLoading){
+<div class="flex h-screen justify-center items-center">
+<i class="fa fa-spinner fa-spin text-7xl"></i>
+</div>
+}@else {
+<div class="flex items-center flex-wrap justify-between my-16">
+  <div class="w-full lg:w-1/4">
+   <owl-carousel-o [options]="customOptions">
+
+    @for (image of product.images; track product.id) {
+      <ng-template carouselSlide [id]="'slide' + $index">
+        <img [src]="image">
+      </ng-template>
+    }
+
+  </owl-carousel-o>
+  </div>
+
+  <div class="w-full lg:w-3/4 lg:ps-2">
+    <h2 class="text-4xl font-normal mb-2">
+      {{product.title.split(" ").slice(0,4).join(" ")}}
+    </h2>
+    <p class="text-gray-500 text-xl mb-10 md:line-clamp-0 line-clamp-2">{{product.description.split(" ").join(" ")}}</p>
+    <p class="text-2xl font-[300] text-main mb-4">
+      {{ product.category.name }}
+    </p>
+    <div class="flex items-center justify-between  mb-2">
+      <span class="text-xl">{{product.price}} EGP</span>
+      <span
+        ><i class="fa fa-star text-yellow-400"></i
+        ><span class="text-gray-500">4.5</span></span
+      >
+    </div>
+
+    <button
+    (click)="addProductToCart(product._id)"
+      class="bg-main p-1.5 rounded w-full text-white cursor-pointer active:scale-[0.99]"
+    >
+      <i class="fa fa-plus"></i> Add To Cart
+    </button>
+  </div>
+</div>
+}

@@ -1,0 +1,151 @@
+<form [formGroup]="chekoutPayment" class="w-[80%] mx-auto mt-5" (ngSubmit)="handleFormCheckout()" id="form">
+<h2 class="text-4xl mb-7 text-main">Checkout Form :</h2>
+<div class="relative z-0 w-full mb-7 group">
+
+
+    <input
+    formControlName="details"
+      type="text"
+      name="floating_Details"
+      id="floating_Details"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+      for="floating_Details"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >Street</label
+    >
+  </div>
+
+
+
+  
+  @if (chekoutPayment.get("details")?.touched) {
+
+<div >
+@if (chekoutPayment.get("details")?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">Street is required</p>
+}
+</div>
+
+@if (chekoutPayment.get("details")?.getError("minlength")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">please enter valid address</p>
+
+}
+  }
+
+
+
+  <div class="relative z-0 w-full mb-7 group">
+    <input
+      formControlName="city"
+      type="text"
+      name="floating_city"
+      id="floating_city"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+      for="floating_city"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >city</label
+    >
+  </div>
+
+
+
+  @if (chekoutPayment.get("city")?.touched) {
+
+<div >
+@if (chekoutPayment.get("city")?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">City is required</p>
+}
+</div>
+  }
+
+
+  <div class="relative z-0 w-full mb-7 group">
+
+
+    <input
+      formControlName="phone"
+      type="tel"
+      name="floating_phone"
+      id="floating_phone"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+      for="floating_phone"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >phone</label
+    >
+  </div>
+
+
+    @if (chekoutPayment.get("phone")?.touched) {
+
+<div >
+@if (chekoutPayment.get("phone")?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">phone is required</p>
+}
+</div>
+
+@if (chekoutPayment.get("phone")?.getError("pattern")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">please egyption phone</p>
+
+}
+  }
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex align-center gap-x-2">
+  <button
+  [disabled]="chekoutPayment.invalid"
+  (click)="goToCashPayment()"
+    type="button"
+    class="text-white disabled:opacity-25 bg-main hover:bg-main cursor-pointer font-medium rounded text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main-600 dark:hover:bg-main-700 dark:focus:ring-main"
+  >
+@if (cashLoading) {
+loading...
+}@else {
+Pay Cash
+}
+  </button>
+    <button
+    [disabled]="chekoutPayment.invalid"
+  (click)="goToVisaPayment()"
+    type="submit"
+    class="text-white disabled:opacity-25 bg-main hover:bg-main cursor-pointer font-medium rounded text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main-600 dark:hover:bg-main-700 dark:focus:ring-main"
+  >
+
+@if (visaLoading) {
+loading...
+}@else {
+Pay With Vsia
+}
+
+</button>
+</div>
+
+
+
+
+
+
+</form>
+
+
+

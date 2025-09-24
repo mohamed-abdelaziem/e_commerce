@@ -1,0 +1,240 @@
+
+
+<form (ngSubmit)="showRegisterForm()" [formGroup]="registerForm" class="w-[80%] mx-auto mt-5">
+  <h2 class="text-4xl mb-3 text-main">Register Form :</h2>
+  <div class="relative z-0 w-full mb-5 group">
+    <input
+    [class.!border-b-red-500]="emailController?.getError('required') || emailController?.getError('email')"
+    formControlName="email"
+      type="email"
+      name="floating_email"
+      id="floating_email"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+    [class.!text-red-500]="emailController?.getError('required') || emailController?.getError('email')"
+      for="floating_email"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >User Email</label
+    >
+  </div>
+
+
+  
+   @if (emailController?.touched) {
+
+<div >
+@if (emailController?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">Email is required</p>
+}
+
+
+@if (emailController?.getError("email")) {
+<p role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">please Enter vaild email</p>
+}
+
+
+</div>
+
+
+  }
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+    <input
+    [class.!border-b-red-500]="nameController?.getError('required') || nameController?.getError('minlength')"
+    formControlName="name"
+      type="text"
+      name="floating_name"
+      id="floating_name"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+       [class.!text-red-500]="nameController?.getError('required') || nameController?.getError('minlength')"
+      for="floating_name"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >User name</label
+    >
+  </div>
+
+
+
+  @if (nameController?.touched) {
+
+<div >
+@if (nameController?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">name is required</p>
+}
+
+
+@if (nameController?.getError("minlength")) {
+<p role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">min length is 3 char</p>
+}
+
+
+</div>
+
+
+  }
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+    <input
+    formControlName="password"
+    [class.!border-red-500]="passowrdController?.getError('required') || passowrdController?.getError('pattern')"
+      type="password"
+      name="floating_password"
+      id="floating_password"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+    [class.!text-red-500]="passowrdController?.getError('required') || passowrdController?.getError('pattern')"
+      for="floating_email"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >User Password</label
+    >
+  </div>
+
+
+
+
+   @if (passowrdController?.touched) {
+
+<div >
+@if (passowrdController?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">passowrd is required</p>
+}
+
+
+@if (passowrdController?.getError("pattern")) {
+<p role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">must begin with capital char and contain on 5 to 10 letters</p>
+}
+
+
+</div>
+
+
+  }
+
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+    <input
+    formControlName="rePassword"
+     [class.!border-red-500]="rePasswordController?.getError('required') || rePasswordController?.getError('pattern')"
+      for="floating_rePassword"
+      type="password"
+      name="floating_rePassword"
+      id="floating_rePassword"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+      for="floating_rePassword"
+       [class.!text-red-500]="rePasswordController?.getError('required') || rePasswordController?.getError('pattern')"
+     
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >User rePassword</label
+    >
+  </div>
+
+
+
+
+  
+   @if (rePasswordController?.touched) {
+
+<div>
+@if (rePasswordController?.getError("required")) {
+<p   role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">passowrd is required</p>
+}
+
+
+@if (registerForm.getError("noMatch")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">please math the password</p>
+}
+
+
+</div>
+
+
+  }
+
+
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+    <input
+    formControlName="phone"
+     [class.!border-red-500]="phoneController?.getError('required') || phoneController?.getError('pattern')"
+      type="tel"
+      name="floating_phone"
+      id="floating_phone"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-green-500 appearance-none dark:text-black dark:focus:border-main-500 focus:outline-none focus:ring-0 focus:border-main-600 peer"
+      placeholder=" "
+      required
+    />
+    <label
+      for="floating_phone"
+       [class.!text-red-500]="passowrdController?.getError('required') || passowrdController?.getError('pattern')"
+      class="peer-focus:font-medium absolute text-gray-500 dark:text-gray-500 text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main-600 peer-focus:dark:text-main-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >User Phone</label
+    >
+  </div>
+
+
+
+
+
+
+  
+   @if (phoneController?.touched) {
+
+<div >
+@if (phoneController?.getError("required")) {
+<p  role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">phone is required</p>
+}
+
+
+@if (phoneController?.getError("pattern")) {
+<p role="alert" class="p-4 mb-4 text-sm text-red-800 rounded-lg font-semibold bg-red-50  dark:text-red-500">must be Egyption Number</p>
+}
+
+
+</div>
+
+
+  }
+
+
+
+  
+
+  <button
+  [disabled]="registerForm.invalid"
+    type="submit"
+    class="text-white disabled:opacity-25 bg-main hover:bg-main cursor-pointer  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main-600 dark:hover:bg-main-700 dark:focus:ring-main"
+  >
+  @if(isLoading){
+    loading....
+  }@else{
+   Submit
+  }
+ 
+  </button>
+</form>
