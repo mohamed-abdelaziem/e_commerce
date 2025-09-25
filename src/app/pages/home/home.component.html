@@ -58,8 +58,8 @@
 @for (product of data | search : searchWord; track $index) {
 <app-product-card [product]="product"></app-product-card>
 }@empty {
-<div class="absolute left-[50%] -translate-[50%] mt-5">
-<p class="text-center text-red-500 text-4xl">Please Enter Valid Data</p>
+<div class="text-center mt-5">
+<p class="text-center text-red-500 text-2xl md:text-4xl">Please Enter Valid Data</p>
 </div>
 }
 
